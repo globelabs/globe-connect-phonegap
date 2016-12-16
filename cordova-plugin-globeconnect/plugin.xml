@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-globeconnect"
+    version="0.0.0">
+
+    <engines>
+        <engine name="cordova-plugman" version=">=5.0.0" />
+        <engine name="cordova-android" version=">=5.0.0" />
+        <engine name="cordova-ios" version=">=1.7.1" />
+    </engines>
+
+    <name>Globe Labs Developer API</name>
+    <description>
+        Use Globe Labs Developer API plugin to connect to Globe Labs services like sms, payments, location etc...
+    </description>
+    <license>MIT</license>
+    <keywords>api, globe, globelabs, developer</keywords>
+    <repo></repo>
+    <issue></issue>
+
+    <js-module src="www/Amax.js" name="Amax">
+        <clobbers target="window.globeconnect.Amax" />
+    </js-module>
+    <js-module src="www/Authentication.js" name="Authentication">
+        <clobbers target="window.globeconnect.Authentication" />
+    </js-module>
+    <js-module src="www/BinarySms.js" name="BinarySms">
+        <clobbers target="window.globeconnect.BinarySms" />
+    </js-module>
+    <js-module src="www/Location.js" name="Location">
+        <clobbers target="window.globeconnect.Location" />
+    </js-module>
+    <js-module src="www/Payment.js" name="Payment">
+        <clobbers target="window.globeconnect.Payment" />
+    </js-module>
+    <js-module src="www/Sms.js" name="Sms">
+        <clobbers target="window.globeconnect.Sms" />
+    </js-module>
+    <js-module src="www/Subscriber.js" name="Subscriber">
+        <clobbers target="window.globeconnect.Subscriber" />
+    </js-module>
+    <js-module src="www/Ussd.js" name="Ussd">
+        <clobbers target="window.globeconnect.Ussd" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <!-- Configuration -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Amax" >
+                <param name="android-package" value="ph.com.globe.connect.Amax"/>
+            </feature>
+            <feature name="Authentication" >
+                <param name="android-package" value="ph.com.globe.connect.Authentication"/>
+            </feature>
+            <feature name="BinarySms" >
+                <param name="android-package" value="ph.com.globe.connect.BinarySms"/>
+            </feature>
+            <feature name="Location" >
+                <param name="android-package" value="ph.com.globe.connect.Location"/>
+            </feature>
+            <feature name="Payment" >
+                <param name="android-package" value="ph.com.globe.connect.Payment"/>
+            </feature>
+            <feature name="Sms" >
+                <param name="android-package" value="ph.com.globe.connect.Sms"/>
+            </feature>
+            <feature name="Subscriber" >
+                <param name="android-package" value="ph.com.globe.connect.Subscriber"/>
+            </feature>
+            <feature name="Ussd" >
+                <param name="android-package" value="ph.com.globe.connect.Ussd"/>
+            </feature>
+        </config-file>
+
+        <!-- Source files -->
+        <source-file src="src/android/Amax.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/ApiException.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/AsyncHandler.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/Authentication.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/BinarySms.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/Context.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/HttpRequest.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/HttpRequestException.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/HttpResponse.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/HttpResponseException.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/Location.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/Payment.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/Sms.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/Subscriber.java" target-dir="src/ph/com/globe/connect" />
+        <source-file src="src/android/Ussd.java" target-dir="src/ph/com/globe/connect" />
+
+        <!-- Build extras -->
+        <source-file src="src/android/libs/extras/build-extras.gradle" target-dir="src/.." />
+
+        <!-- Dependencies -->
+        <resource-file
+            src="src/android/libs/httpclient-android-4.3.5.1.jar"
+            target="libs/httpclient-android-4.3.5.1.jar" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Amax">
+                <param name="ios-package" value="Amax" />
+            </feature>
+            <feature name="Authentication">
+                <param name="ios-package" value="Authentication" />
+            </feature>
+            <feature name="BinarySms">
+                <param name="ios-package" value="BinarySms" />
+            </feature>
+            <feature name="Location">
+                <param name="ios-package" value="Location" />
+            </feature>
+            <feature name="Payment">
+                <param name="ios-package" value="Payment" />
+            </feature>
+            <feature name="Sms">
+                <param name="ios-package" value="Sms" />
+            </feature>
+            <feature name="Subscriber">
+                <param name="ios-package" value="Subscriber" />
+            </feature>
+            <feature name="Ussd">
+                <param name="ios-package" value="Ussd" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/Bridging-Header.h" />
+        <source-file src="src/ios/Amax.swift" />
+        <source-file src="src/ios/Authentication.swift" />
+        <source-file src="src/ios/BinarySms.swift" />
+        <source-file src="src/ios/HTTPRequest.swift" />
+        <source-file src="src/ios/JSON.swift" />
+        <source-file src="src/ios/Location.swift" />
+        <source-file src="src/ios/Payment.swift" />
+        <source-file src="src/ios/PhonegapIOSError.swift" />
+        <source-file src="src/ios/Sms.swift" />
+        <source-file src="src/ios/Subscriber.swift" />
+        <source-file src="src/ios/Ussd.swift" />
+    </platform>
+
+    <dependency id="cordova-plugin-add-swift-support" version="1.6.0"/>
+</plugin>

@@ -1,0 +1,35 @@
+{
+  "name": "cordova-plugin-globeconnect",
+  "version": "0.0.0",
+  "description": "Use Globe Connect Developer API plugin to connect to Globe Connect services like sms, payments, location etc...",
+  "cordova": {
+    "id": "cordova-plugin-globeconnect",
+    "platforms": [
+      "android",
+      "ios",
+    ]
+  },
+  "keywords": [
+    "api",
+    "globe",
+    "globeconnect",
+    "developer",
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "engines": [
+    {
+      "name": "cordova-plugman",
+      "version": ">=5.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=5.0.0"
+    }
+  ],
+  "author": "Charles Zamora <czamora@openovate.com>",
+  "license": "MIT"
+}
