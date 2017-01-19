@@ -44,11 +44,17 @@ import Foundation
         var headers = Dictionary<String, String>()
         headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
 
+        let code = command.arguments[0] as? String ?? ""
+
+        if !code.isEmpty {
+            self.authCode = code
+        }
+
         // set the payload
         let payload: [String : String] = [
             "app_id": self.authAppId!,
             "app_secret": self.authAppSecret!,
-            "code": self.authCode!
+            "code":self.authCode!
         ]
 
         // build the payload
@@ -59,6 +65,9 @@ import Foundation
             body = body.appending(value.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
             body = body.appending("&")
         }
+
+        print(accessTokenURL)
+        print(payload)
 
         // perform http request
         HTTPRequest(url: accessTokenURL, headers: headers)

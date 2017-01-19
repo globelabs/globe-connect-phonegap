@@ -29,14 +29,29 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
 
+        this.testAuthFlow();
         // this.testAuthentication();
-        this.testAmax();
+        // this.testAmax();
         // this.testBinarySms();
         // this.testLocation();
         // this.testPayment();
         // this.testSms();
         // this.testSubscriber();
         // this.testUssd();
+    },
+
+    testAuthFlow : function() {
+        var auth = globeconnect.Authentication();
+
+        auth.startAuthActivity(
+        '5ozgSgeRyeHzacXo55TR65HnqoAESbAz',
+        '3dbcd598f268268e13550c87134f8de0ec4ac1100cf0a68a2936d07fc9e2459e',
+        function() {
+            console.log(arguments);
+        },
+        function() {
+            console.log(arguments);
+        });
     },
 
     testAuthentication : function() {
@@ -50,7 +65,7 @@ var app = {
             console.log(arguments);
         });
 
-        var code = 'M8s6gAarub9pebhgEAqKsxdByxHoM5kzf4Mp5js98Bzot8bqjrfaRdG4H4jknpFzr8gKtdx4jnUqbA8KsxqA48frR698IKLRb5S5LBxauo9EkxCMrzk6uorxGEu67Tay49aTxxzu8ozznukMEaXCBRB8GuKjR5MSpB65zIbkA8Bf5eA94se848KUb589RteGkdEFBEddEH6xqRyfjMBqatE4ppBsAe56Bfq4BkjHrXA9Rsqzp5RhMAA6Mu65MAds';
+        var code = 'qbFx7o5afb6b4XtMyd6afL9aM6fAzjpEte44entr5A6KSdzjR6ILM74qSqjAepsx9gzgsdkqkRIaeRapu9A4zpu5q6RrS7kpzEsr6kKzHp6AR8CnejpRsEzRKpu4RikRyKaiRaxuGzj4osX8Ap6CbpkEGHaopyrsor6kXS6G4eBueKRRnu8oq9KI96gBks54AAnsMk7LpSb5j8gIn4A4zSKa4RptLXjyAtLrad7f9ndMEfnkboXt8XoBafRpk9oF';
 
         auth.getAccessToken(code, function() {
             console.log(arguments);

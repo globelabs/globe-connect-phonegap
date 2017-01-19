@@ -144,4 +144,5 @@
     </platform>
 
     <dependency id="cordova-plugin-add-swift-support" version="1.6.0"/>
+    <dependency id="cordova-plugin-inappbrowser" version="1.6.1"/>
 </plugin>

@@ -27,7 +27,7 @@ var Authentication = function(appId, appSecret) {
      * @return this
      */
     this.setAppId = function(appId) {
-        exec(successCallback, errorCallback, this.class, 'setAppId', [appId]);
+        exec(null, null, this.class, 'setAppId', [appId]);
 
         return this;
     };
@@ -38,8 +38,8 @@ var Authentication = function(appId, appSecret) {
      * @param  string
      * @return this
      */
-    this.appSecret = function(appSecret) {
-        exec(successCallback, errorCallback, this.class, 'setAppSecret', [appSecret]);
+    this.setAppSecret = function(appSecret) {
+        exec(null, null, this.class, 'setAppSecret', [appSecret]);
 
         return this;
     };
@@ -78,6 +78,79 @@ var Authentication = function(appId, appSecret) {
 
         return this;
     };
+
+    /**
+     * Starts an authentication activity.
+     *
+     * @param  string
+     * @param  string
+     * @param  function
+     * @param  function
+     * @return object
+     */
+    this.startAuthActivity = function(appId, appSecret, successCallback, errorCallback) {
+        // root authentication url
+        var root = 'http://developer.globelabs.com.ph/';
+        // dialog url
+        var url  = 'http://developer.globelabs.com.ph/dialog/oauth?app_id=' + appId;
+
+        // initialize our browser reference
+        var ref  = cordova.InAppBrowser.open(url, '_blank', 'location=no');
+        // scope reference
+        var self = this;
+
+        // on load start
+        ref.addEventListener('loadstart', function(e) {});
+
+        // on load stop
+        ref.addEventListener('loadstop', function(e) {
+            // we're on a new site?
+            if(e.url.indexOf(root) !== 0) {
+                // check the parameters
+                var params = e.url.substring(e.url.indexOf('?') + 1);
+                // split it
+                var params = params.split('&');
+                // initialize parameter handler
+                var pairs  = {};
+
+                // iterate on each parameter
+                for(var i in params) {
+                    // get the key value pair
+                    var pair = params[i].split('=');
+
+                    // set the key value pair
+                    pairs[pair[0]] = pair[1];
+                }
+
+                self
+                // set app id
+                .setAppId(appId)
+                // set app secret
+                .setAppSecret(appSecret)
+                // send get access token request
+                .getAccessToken(pairs.code, function(response) {
+                    // close browser
+                    ref.close();
+
+                    // clear reference
+                    ref = undefined;
+
+                    // return to callback
+                    successCallback(response);
+                }, function(response) {
+                    errorCallback(response);
+                });
+            }
+        });
+
+        // on load error
+        ref.addEventListener('loaderror', function(e) {
+            // call error callback
+            errorCallback();
+        });
+
+        return ref;
+    }
 };
 
 module.exports = Authentication;
