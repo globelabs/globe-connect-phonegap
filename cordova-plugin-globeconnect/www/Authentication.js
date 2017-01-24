@@ -10,14 +10,23 @@ var Authentication = function(appId, appSecret) {
     // class name
     this.class = 'Authentication';
 
+    // app id
+    this.appId      = null;
+    // app secret
+    this.appSecret  = null;
+
     // app id set?
     if(appId) {
         exec(null, null, this.class, 'setAppId', [appId]);
+
+        this.appId = appId;
     };
 
     // app secret set?
     if(appSecret) {
         exec(null, null, this.class, 'setAppSecret', [appSecret]);
+
+        this.appSecret = appSecret;
     };
 
     /**
@@ -88,11 +97,11 @@ var Authentication = function(appId, appSecret) {
      * @param  function
      * @return object
      */
-    this.startAuthActivity = function(appId, appSecret, successCallback, errorCallback) {
+    this.startAuthActivity = function(successCallback, errorCallback) {
         // root authentication url
         var root = 'http://developer.globelabs.com.ph/';
         // dialog url
-        var url  = 'http://developer.globelabs.com.ph/dialog/oauth?app_id=' + appId;
+        var url  = 'http://developer.globelabs.com.ph/dialog/oauth?app_id=' + this.appId;
 
         // initialize our browser reference
         var ref  = cordova.InAppBrowser.open(url, '_blank', 'location=no');
@@ -122,13 +131,8 @@ var Authentication = function(appId, appSecret) {
                     pairs[pair[0]] = pair[1];
                 }
 
-                self
-                // set app id
-                .setAppId(appId)
-                // set app secret
-                .setAppSecret(appSecret)
                 // send get access token request
-                .getAccessToken(pairs.code, function(response) {
+                self.getAccessToken(pairs.code, function(response) {
                     // close browser
                     ref.close();
 
