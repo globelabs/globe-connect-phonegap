@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-globeconnect",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Use Globe Connect Developer API plugin to connect to Globe Connect services like sms, payments, location etc...",
   "cordova": {
     "id": "cordova-plugin-globeconnect",
