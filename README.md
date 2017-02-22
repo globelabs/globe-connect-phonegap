@@ -3,7 +3,7 @@
 
 ### Setting Up
 
-Please refer to this [link](https://github.com/globelabs/globe-connect-phonegap/blob/master/instructions/installation.md) for detailed installation instructions of Globe Connect Phonegap SDK.
+Please refer to this <a target="_blank" href="https://github.com/globelabs/globe-connect-phonegap/blob/master/instructions/installation.md">link</a> for detailed installation instructions of Globe Connect Phonegap SDK.
 
 ### Authentication
 
@@ -406,7 +406,7 @@ location.getLocation(function() {
 
 #### Overview
 
-TODO
+Subscriber Data Query API interface allows a Web application to query the customer profile of an end user who is the customer of a mobile network operator.
 
 #### Subscriber Balance
 
